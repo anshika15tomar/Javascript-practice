@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter</title>
+</head>
+<body>
+    <script>
+        const numbers = [10, 15, 20, 25, 30];
+const evenNumbers = numbers.filter(num => num % 2 === 0);
+console.log(evenNumbers); 
+
+const students = [
+    { name: "Abc", score: 80 },
+    { name: "pqr", score: 65 },
+    { name: "asdf", score: 90 }
+];
+
+const highScorers = students.filter(student => student.score > 75);
+console.log(highScorers);
+
+
+    </script>
+</body>
+</html>

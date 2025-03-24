@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Filter & Sort</title>
+    <style>
+        body { font-family: Arial, sans-serif;
+         text-align: center;
+          }
+        .container { 
+        max-width: 600px; 
+        margin: auto; 
+        }
+        .controls { 
+        margin-bottom: 20px; 
+        }
+        select, button { 
+        padding: 10px; 
+        margin: 5px; 
+        }
+        .product { 
+       
+        border: 1px solid #ddd; 
+        padding: 10px; 
+        margin: 10px; 
+        border-radius: 5px; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Product Filter & Sorting</h2>
+
+    
+        <div class="controls">
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="fashion">Fashion</option>
+            </select>
+
+            <button onclick="sortProducts('low')">Sort: Low to High</button>
+            <button onclick="sortProducts('high')">Sort: High to Low</button>
+        </div>
+
+        
+        <div id="productList"></div>
+    </div>
+
+    <script>
+        
+        let products = [
+            { name: "Laptop", price: 800, category: "electronics" },
+            { name: "Phone", price: 500, category: "electronics" },
+            { name: "T-shirt", price: 20, category: "fashion" },
+            { name: "Jeans", price: 40, category: "fashion" },
+            { name: "Headphones", price: 100, category: "electronics" }
+        ];
+
+        let filteredProducts = [...products]; 
+
+
+        function displayProducts() {
+            const productList = document.getElementById("productList");
+            productList.innerHTML = filteredProducts.map(product => `
+                <div class="product">
+                    <h3>${product.name}</h3>
+                    <p>Price: $${product.price}</p>
+                    <p>Category: ${product.category}</p>
+                </div>
+            `).join('');
+        }
+
+    
+        document.getElementById("categoryFilter").addEventListener("change", function() {
+            const category = this.value;
+            filteredProducts = category === "all" ? products : products.filter(p => p.category === category);
+            displayProducts();
+        });
+
+
+        function sortProducts(order) {
+            filteredProducts.sort((a, b) => order === "low" ? a.price - b.price : b.price - a.price);
+            displayProducts();
+        }
+
+        
+        displayProducts();
+    </script>
+
+</body>
+</html>
