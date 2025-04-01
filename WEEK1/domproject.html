@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
         }
+
         .container {
             max-width: 400px;
             margin: auto;
@@ -17,10 +19,12 @@
             border-radius: 8px;
             background-color: aquamarine;
         }
+
         ul {
             list-style: none;
             padding: 0;
         }
+
         li {
             display: flex;
             justify-content: space-between;
@@ -29,10 +33,12 @@
             margin: 5px 0;
             border-radius: 4px;
         }
+
         .completed {
             text-decoration: line-through;
             color: gray;
         }
+
         button {
             cursor: pointer;
             border: none;
@@ -41,6 +47,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>To-Do List</h2>
@@ -57,7 +64,7 @@
 
             let li = document.createElement("li");
             li.innerHTML = `${taskValue} <button onclick="removeTask(this)">❌</button>`;
-            li.addEventListener("click", function() {
+            li.addEventListener("click", function () {
                 this.classList.toggle("completed");
             });
 
@@ -70,4 +77,5 @@
         }
     </script>
 </body>
+
 </html>

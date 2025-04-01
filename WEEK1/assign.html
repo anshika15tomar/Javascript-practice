@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Filter</title>
+    <style>
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            gap: 10px;
+            margin-bottom: 5rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .filter-button {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .filter-button.active {
+            background-color: burlywood;
+            color: white;
+            border-color: burlywood;
+        }
+
+        .service-item {
+            border: 1px solid #eee;
+            padding: 20px;
+            margin-bottom: 15px;
+            width: 20rem;
+            background-color: darksalmon;
+            height: 7rem;
+            display: none;
+        }
+
+        .service-item.show {
+            display: flex;
+            border: 1px solid black;
+        }
+
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="filter-container">
+        <button class="filter-button active" data-filter="all">All</button>
+        <button class="filter-button" data-filter="web-development">Web Development</button>
+        <button class="filter-button" data-filter="marketing">Marketing</button>
+        <button class="filter-button" data-filter="design">Design</button>
+    </div>
+
+    <div class="services-container">
+        <div class="service-item" data-category="web-development">
+            <h3>Web Development Service 1</h3>
+            <p>Description of web development service 1.</p>
+        </div>
+        <div class="service-item" data-category="marketing">
+            <h3>Marketing Service 1</h3>
+            <p>Description of marketing service 1.</p>
+        </div>
+        <div class="service-item" data-category="design">
+            <h3>Design Service 1</h3>
+            <p>Description of design service 1.</p>
+        </div>
+        <div class="service-item" data-category="web-development">
+            <h3>Web Development Service 2</h3>
+            <p>Description of web development service 2.</p>
+        </div>
+        <div class="service-item" data-category="marketing">
+            <h3>Marketing Service 2</h3>
+            <p>Description of marketing service 2.</p>
+        </div>
+        <div class="service-item" data-category="design">
+            <h3>Design Service 2</h3>
+            <p>Description of design service 2.</p>
+        </div>
+    </div>
+
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const serviceItems = document.querySelectorAll('.service-item');
+
+        function filterServices(filter) {
+            serviceItems.forEach(item => {
+                const category = item.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    item.classList.add('show');
+                } else {
+                    item.classList.remove('show');
+                }
+            });
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterServices(button.getAttribute('data-filter'));
+            });
+        });
+
+        // Show all items by default on load
+        filterServices('all');
+    </script>
+
+</body>
+</html>

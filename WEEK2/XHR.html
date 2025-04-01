@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XHR</title>
+</head>
+<body style="font-family: cursive">
+    <p>
+    <button>
+        random image
+    </button>
+    </p>
+    <img src="" style="width: 500px;">
+    <script>
+        const image = document.querySelector('img')
+        const button = document.querySelector('button')
+        
+        button.addEventListener('click', () => {
+            const abc = new XMLHttpRequest();
+            console.log(abc);
+            abc.responseType = "json";
+
+            abc.addEventListener('load', () => {
+                image.src = abc.response.message;  
+                console.log(abc.response);
+            });
+
+            abc.open('GET', 'https://dog.ceo/api/breeds/image/random');
+            abc.send();
+        });
+    </script>
+</body>
+</html>

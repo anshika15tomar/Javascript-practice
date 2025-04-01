@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping cart</title>
+</head>
+
+<body>
+    <script>
+
+        const cart = [
+            { id: 1, name: "Laptop", price: 50000 },
+            { id: 2, name: "Phone", price: 25000 },
+            { id: 3, name: "Headphones", price: 5000 },
+            { id: 4, name: "Mouse", price: 1500 }
+        ];
+
+
+        const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+        console.log(`Total Cart Price: ₹${totalPrice}`);
+
+
+        const searchProduct = "Phone";
+        const foundProduct = cart.find(item => item.name === searchProduct);
+
+        if (foundProduct) {
+            console.log(`${searchProduct} is in the cart. Price: ₹${foundProduct.price}`);
+        } else {
+            console.log(`${searchProduct} is not in the cart.`);
+        }
+
+
+        const isAboveMinimumPrice = cart.every(item => item.price > 1000);
+
+        console.log(`Are all items above ₹1000? ${isAboveMinimumPrice ? "Yes" : "No"}`);
+
+    </script>
+</body>
+
+</html>
